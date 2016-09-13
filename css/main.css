@@ -92,7 +92,8 @@ a {
   width: 100%; }
 
 .pull {
-  clear: both; }
+  clear: both;
+  margin-bottom: 20px; }
 
 #pull {
   position: relative;
@@ -346,6 +347,8 @@ a {
   .portfolio__item {
     width: 100%;
     text-align: center; }
+  .templates__item {
+    width: 100%; }
   .about {
     padding-top: 20px; }
   .about__pic {
