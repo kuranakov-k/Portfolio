@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Магазин Цветов</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+	<link rel="stylesheet" href="css/skin.css">
+	<style type="text/css">
+
+/**
+ * Overwrite for having a carousel with dynamic width.
+ */
+.jcarousel-skin-tango .jcarousel-container-horizontal {
+    width: 100%;
+}
+
+.jcarousel-skin-tango .jcarousel-clip-horizontal {
+    width: 100%;
+}
+
+#display {
+    clear: both;
+    width: auto;
+    height: 250px;
+    overflow: scroll;
+    border: 1px solid #666;
+    background-color: #fcfcfc;
+    padding: 10px;
+}
+</style>
+<script type="text/javascript">
+
+/**
+ * This is the callback function which receives notification
+ * about the state of the next button.
+ */
+function mycarousel_buttonNextCallback(carousel, button, enabled) {
+    display('Next button is now ' + (enabled ? 'enabled' : 'disabled'));
+};
+
+/**
+ * This is the callback function which receives notification
+ * about the state of the prev button.
+ */
+function mycarousel_buttonPrevCallback(carousel, button, enabled) {
+    display('Prev button is now ' + (enabled ? 'enabled' : 'disabled'));
+};
+
+/**
+ * This is the callback function which receives notification
+ * right after initialisation of the carousel
+ */
+function mycarousel_initCallback(carousel, state) {
+    if (state == 'init')
+        display('Carousel initialised');
+    else if (state == 'reset')
+        display('Carousel reseted');
+};
+
+/**
+ * This is the callback function which receives notification
+ * right after reloading of the carousel
+ */
+function mycarousel_reloadCallback(carousel) {
+    display('Carousel reloaded');
+};
+
+/**
+ * This is the callback function which receives notification
+ * when an item becomes the first one in the visible range.
+ */
+function mycarousel_itemFirstInCallback(carousel, item, idx, state) {
+    display('Item #' + idx + ' is now the first item');
+};
+
+/**
+ * This is the callback function which receives notification
+ * when an item is no longer the first one in the visible range.
+ */
+function mycarousel_itemFirstOutCallback(carousel, item, idx, state) {
+    display('Item #' + idx + ' is no longer the first item');
+};
+
+/**
+ * This is the callback function which receives notification
+ * when an item becomes the first one in the visible range.
+ */
+function mycarousel_itemLastInCallback(carousel, item, idx, state) {
+    display('Item #' + idx + ' is now the last item');
+};
+
+/**
+ * This is the callback function which receives notification
+ * when an item is no longer the first one in the visible range.
+ */
+function mycarousel_itemLastOutCallback(carousel, item, idx, state) {
+    display('Item #' + idx + ' is no longer the last item');
+};
+
+/**
+ * This is the callback function which receives notification
+ * when an item becomes the first one in the visible range.
+ * Triggered before animation.
+ */
+function mycarousel_itemVisibleInCallbackBeforeAnimation(carousel, item, idx, state) {
+    // No animation on first load of the carousel
+    if (state == 'init')
+        return;
+
+    jQuery('img', item).fadeIn('slow');
+};
+
+/**
+ * This is the callback function which receives notification
+ * when an item becomes the first one in the visible range.
+ * Triggered after animation.
+ */
+function mycarousel_itemVisibleInCallbackAfterAnimation(carousel, item, idx, state) {
+    display('Item #' + idx + ' is now visible');
+};
+
+/**
+ * This is the callback function which receives notification
+ * when an item is no longer the first one in the visible range.
+ * Triggered before animation.
+ */
+function mycarousel_itemVisibleOutCallbackBeforeAnimation(carousel, item, idx, state) {
+    jQuery('img', item).fadeOut('slow');
+};
+
+/**
+ * This is the callback function which receives notification
+ * when an item is no longer the first one in the visible range.
+ * Triggered after animation.
+ */
+function mycarousel_itemVisibleOutCallbackAfterAnimation(carousel, item, idx, state) {
+    display('Item #' + idx + ' is no longer visible');
+};
+
+/**
+ * Helper function for printing out debug messages.
+ * Not needed for jCarousel.
+ */
+var row = 1;
+function display(s) {
+    // Log to Firebug (getfirebug.com) if available
+    //if (window.console != undefined && typeof window.console.log == 'function')
+      //  console.log(s);
+
+    if (row >= 1000)
+        var r = row;
+    else if (row >= 100)
+        var r = '&nbsp;' + row;
+    else if (row >= 10)
+        var r = '&nbsp;&nbsp;' + row;
+    else
+        var r = '&nbsp;&nbsp;&nbsp;' + row;
+
+    jQuery('#display').html(jQuery('#display').html() + r + ': ' + s + '<br />').get(0).scrollTop += 10000;
+
+    row++;
+};
+
+jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel({
+        scroll: 1,
+
+        initCallback:   mycarousel_initCallback,
+        reloadCallback: mycarousel_reloadCallback,
+
+        buttonNextCallback:   mycarousel_buttonNextCallback,
+        buttonPrevCallback:   mycarousel_buttonPrevCallback,
+
+        itemFirstInCallback:  mycarousel_itemFirstInCallback,
+        itemFirstOutCallback: mycarousel_itemFirstOutCallback,
+        itemLastInCallback:   mycarousel_itemLastInCallback,
+        itemLastOutCallback:  mycarousel_itemLastOutCallback,
+        itemVisibleInCallback: {
+            onBeforeAnimation: mycarousel_itemVisibleInCallbackBeforeAnimation,
+            onAfterAnimation:  mycarousel_itemVisibleInCallbackAfterAnimation
+        },
+        itemVisibleOutCallback: {
+            onBeforeAnimation: mycarousel_itemVisibleOutCallbackBeforeAnimation,
+            onAfterAnimation:  mycarousel_itemVisibleOutCallbackAfterAnimation
+        }
+    });
+});
+
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<header class="header-main">
+			<div class="header-logo">
+				<a href="#"><img src="img/header-logo.png" alt="Лого"></a>
+			</div>
+			<nav class="header-menu clearfix">
+				<ul>
+					<li><a href="#">О компании</a></li>
+					<li><a href="#">Новости Цветов</a></li>
+					<li><a href="#">Доставка цветов</a></li>
+					<li><a href="#">Статьи о цветах</a></li>
+				</ul>
+			</nav>
+			<div class="header-ico">
+				<a class="ico ico-home" href="#"></a>
+				<img class="img-border" src="img/ico-border.png" alt="border">
+				<a class="ico ico-mail" href="#"></a>
+				<img class="img-border" src="img/ico-border.png" alt="border">
+				<a class="ico ico-map" href="#"></a>
+			</div>
+			<div class="header-contacts">
+				<p>
+					тел.:(+375 17)<span>328-66-22</span><br>
+					моб.:(+375 29)<span>606-66-22</span><br>
+				<p class="header-address">
+					салон-магазин "Планета Цветов"<br>
+					г. Минск, ул. Комсомольская 18<br>
+				</p>
+				<a href="#">подробная контактная информация</a></p>
+			</div>
+			<div class="header-banner">
+				<img class="banner-hit" src="img/hit.png" alt="Лидер">
+				<img class="banner-image" src="img/roses.jpg" alt="Розы" width="346" height="223">
+				<div class="banner-info">
+					<h2>Букет из белых роз</h2>
+					<p>Лучший подарок на день всех влюбленных</p>
+				</div>
+			</div>
+		</header>
+
+		<div id="wrap">
+			<ul id="mycarousel" class="jcarousel-skin-tango">
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide1.jpg" width="189" height="164" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide2.jpg" width="152" height="159" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide1.jpg" width="189" height="164" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide2.jpg" width="152" height="159" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide1.jpg" width="189" height="164" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide2.jpg" width="152" height="159" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide1.jpg" width="189" height="164" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide2.jpg" width="152" height="159" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide1.jpg" width="189" height="164" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide2.jpg" width="152" height="159" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide1.jpg" width="189" height="164" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide2.jpg" width="152" height="159" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide1.jpg" width="189" height="164" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			    <li>
+			    	<table border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td class="slimg"><img src="img/slide2.jpg" width="152" height="159" /></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#">Комнатные цветы</a></td>
+			          </tr>
+			        </table>
+			    </li>
+			  </ul>
+				<p id="display" style="display:none;"></p>
+		</div>
+
+		<main class="container clearfix">
+<!-- ASIDE -->
+			<aside class="news">
+				<h2>Новости цветов</h2>
+				<div class="aside-block">
+					<span>20.06.2011</span><br>
+					<a href="#">Голландский цветочный дизайн. Дни открытых дверей в Москве</a>
+				</div>
+				<div class="aside-block">
+					<span>18.04.2011</span><br>
+					<a href="#">«Цветущая планета 2011» 26 июня – 15 сентября 2011 года в Москве</a>
+				</div>
+				<div class="aside-block">
+					<span>20.06.2011</span><br>
+					<a href="#">Голландский цветочный дизайн. Дни открытых дверей в Москве</a>
+				</div>
+				<div class="aside-block">
+					<span>18.04.2011</span><br>
+					<a href="#">«Цветущая планета 2011» 26 июня – 15 сентября 2011 года в Москве</a>
+				</div>
+				<div class="all-news">
+					<a href="#">Все новости</a>
+				</div>
+				<div class="news-bg">
+					<img src="img/aside-bucket.png" alt="Все новости" width="114" height="108">
+				</div>
+			</aside>
+<!-- ABOUT -->
+			<section class="content">
+				<img class="content-img" src="img/content-bucket.jpg" alt="Букет" width="205" height="163">
+				<h3>Добро пожаловать на планету цветов!</h3>
+				<p class="post-top">В салоне-магазине "Планета Цветов" Вы сможете осуществить мечту Ваших любимых и близких! Что может доставить огромную радость обожаемой девушке,  любимой маме, справедливому начальнику? Флористы нашего салона воплотят в реальность Вашу фантазию. Мы предоставим Вашему вниманию большой выбор  сухоцветов, живые цветы, сувениры на любой случай жизни, которые смогут порадовать Вас и Ваших близких!</p>
+
+				<p>К Вашим услугам букеты, составленные из различных композиций цветов и сухоцветов. Мы создаем все необходимые условия для хранения цветов и поддержания их свежести. Но Вас может ожидать лишь одна проблема – проблема в выборе. В каталоге созданных нами цветочных шедевров можно найти: букеты, предназначенные в подарок женщине, <a href="">свадебные букеты</a>, <a href="#">корзины с цветами</a>, <a href="#">бутоньерки</a> и многое другое. Но мы не ограничиваемся каталогом, потому что в каждое цветочное творение, будь-то букет невесты, свадебные цветы в подарок молодоженам,  «повседневный» букет  шикарных роз, мужественных гвоздик, нежных лилий, гордых георгин, создается  индивидуально, наши флористы вдыхают в каждую работу новую жизнь, награждая букеты  индивидуальностью!</p>
+
+				<p>Если Вы готовитесь к торжеству по случаю Дня рождения близкого или просто хорошего человека, необходимо заострить внимание на таких нюансах, как пол, возраст, характер человека, его социальное положение тоже имеет большое значение. Если это молодая девушка, скромная и застенчивая, цветы должны быть простыми и неброскими. Женщине-начальнику подойдет букет роз или попросите показать для Вашего случая корзины с цветами. Для мужчины – необходимо подобрать строгую и мужественную композицию. Для молодой мамы с ребенком - живые растения с мелкими бутонами без запаха.</p>
+
+				<p>Для детей букеты должны быть яркими и жизнерадостными. Чем старше ребенок, тем больше должны быть составленные букеты. Профессиональные флористы нашего салона-магазина "Планета Цветов"  помогут Вам в этом выборе, но и Вы проявляйте фантазию и интерес. Кто, как не Вы, знает, что нравится человеку, для которого предназначен букет.</p>
+
+				<p>Зайдя к нам в салон, Вы имеете возможность купить цветы и подарки для близких, получив при этом массу удовольствия. Ведь продажа цветов – это целое искусство и, наблюдая, как флористы составляют букеты, человек присутствует при рождении чуда, пусть и маленького. Окунитесь в мир прекрасного! Наша жизнь и так полна серых красок. Также у нас Вы сможете выбрать подарок на любой вкус и для любого повода.</p>
+
+			</section>
+		</main>
+		<footer class="footer-main clearfix">
+			<div class="footer-logo"><img src="img/footer-logo.png" alt="Логотип"></div>
+			<div class="footer-menu">
+				<ul>
+					<li><a href="#">О компании</a></li>
+					<li><a href="#">Новости цветов</a></li>
+					<li><a href="#">Доставка цветов</a></li>
+					<li><a href="#">Статьи о цветах</a></li>
+				</ul>
+			</div>
+			<div class="footer-banners">
+				<img src="img/footer-banner01.jpg" alt="Баннер1">
+				<img src="img/footer-banner02.jpg" alt="Баннер2"></div>
+		</footer>
+	</div>
+
+</body>
+</html>
