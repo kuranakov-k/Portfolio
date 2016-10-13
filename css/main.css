@@ -218,7 +218,7 @@ a {
   display: inline-block;
   -webkit-border-radius: 50%;
           border-radius: 50%;
-  background: #3797D5 url(../img/sprite-main.png) -49px 0 no-repeat;
+  background: #3797D5 url(../img/sprite-main.png) -147px 0 no-repeat;
   width: 43px;
   height: 43px; }
   .contact__twitter:hover {
