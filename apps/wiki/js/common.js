@@ -25,6 +25,7 @@ $(document).ready(function(){
       async: false,
       dataType: "json",
       success: function(data, status, jqXHR){
+      $("#output").html("");  
       for(var i = 0; i < data[1].length; i++) {
         $("#output").append("<div><div class='well'><a href="+data[3][i]+" target='_blank'><h2>" + data[1][i]+ "</h2>" + "<p>" + data[2][i] + "</p></a></div></div>")
       };
