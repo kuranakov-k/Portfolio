@@ -83,7 +83,9 @@ a {
   float: left;
   width: 30%;
   margin-right: 5%;
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 30px;
+  overflow: hidden; }
 
 .portfolio__item:nth-child(3n+1) {
   margin-right: 0; }
