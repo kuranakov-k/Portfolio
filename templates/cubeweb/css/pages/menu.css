@@ -1,0 +1,23 @@
+.menu-link-wrapper {
+	margin-top: 50px;
+}
+.block__link_menu {
+	position: relative;
+	text-align: center;
+	display: block;
+	color: #fff;
+	font-family: "AffectLight", Arial, sans-serif;
+	text-decoration: none;
+	padding: 10px;
+}
+.block__link_menu:before {
+	content: '';
+	display: block;
+	position: absolute;
+	border-top: 8px solid #fff;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	left: 50%;
+	margin-left: -10px;
+	bottom: 0;
+}

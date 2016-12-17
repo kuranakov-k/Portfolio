@@ -1,0 +1,187 @@
+@font-face {
+	font-family: "Affect";
+	src:url(../fonts/Affect/Affect.otf);
+}
+@font-face {
+	font-family: "AffectLight";
+	src: url(../fonts/Affect/AffectLight.otf);
+}
+@font-face {
+	font-family: "AffectBold";
+	src:url(../fonts/Affect/AffectBold.otf);
+}
+@font-face {
+	font-family: "Gubia";
+	src:url(../fonts/Gubia/GubiaRegular.otf);
+}
+@font-face {
+	font-family: "GubiaBold";
+	src:url(../fonts/Gubia/GubiaBold.otf);
+}
+.clearfix:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+body {
+	background-color: #000;
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	font-size: 12px;
+}
+.wrapper {
+	margin: 0 auto;
+	max-width: 1280px;
+	min-width: 648px;
+	min-height: 700px;
+	position: relative;
+}
+.cube__main {
+	width: 633px;
+	margin: 0 auto;
+	position: relative;
+	top: 20px;
+}
+.cube {
+	width: 633px;
+	margin: 0 auto;
+	position: relative;
+	top: 20px;
+	overflow: hidden;
+	min-height: 630px;
+}
+.c-title {
+	position: absolute;
+	color: #fff;
+	z-index: 2;
+	text-transform: uppercase;
+}
+.content {
+	position: relative;
+	margin: 0 auto;
+	width: 506px;
+	min-height: 630px;
+}
+.l-cube__home {
+	position: absolute;
+	top: 0;
+	right: 20px;
+	width: 70px;
+	height: 70px;
+	z-index: 99;
+}
+.l-cube__home:before,
+.l-cube__home:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 50%;
+	margin-top: -2px;
+	right: 50%;
+	margin-right: -17px;
+	background-color: #fff;
+	width: 33px;
+	height: 7px;
+}
+.l-cube__home:before {
+	transform: rotate(45deg);
+}
+.l-cube__home:after {
+	transform: rotate(-45deg);
+}
+.l-cube__back {
+	position: absolute;
+	top: 0;
+	left: 20px;
+	width: 70px;
+	height: 70px;
+	z-index: 99;
+}
+.l-cube__back:before,
+.l-cube__back:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 50%;
+	margin-top: -5px;
+	right: 50%;
+	margin-right: -13px;
+	background-color: #fff;
+	width: 20px;
+	height: 7px;
+}
+.l-cube__back:before {
+	transform-origin: 0 0;
+	transform: rotate(45deg);
+}
+.l-cube__back:after {
+	transform-origin: 0 0;
+	transform: rotate(-45deg) translateX(-7px);
+}
+.content__title {
+	text-align: center;
+	text-transform: uppercase;
+	font-family: "Gubia", Arial, sans-serif;
+	font-size: 3em;
+	margin: 0;
+	padding-top: 100px;
+	max-width: 300px;
+	margin: 0 auto;
+}
+.content__text {
+	padding-top: 8px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-family: "AffectLight", Arial, sans-serif;
+	text-align: justify;
+	font-size: 1.175em;
+	line-height: 1.3;
+	max-height: 286px;
+	overflow: scroll;
+	margin: 0 auto;
+	margin-top: 17px;
+}
+
+.js-current {
+	z-index: 2;
+}
+
+.b__text {
+	font-family: "AffectLight", Arial, sans-serif;
+	font-size: 1em;
+	line-height: 1.625em;
+	margin: 0;
+}
+.b__link {
+	font-family: "AffectLight", Arial, sans-serif;
+	font-size: 1em;
+	line-height: 1.625em;
+	margin: 0;
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+	display: block;
+}
+.b__link:hover {
+	text-decoration: underline;
+}
+
+.cube_friend__overlay_top {
+	position: absolute;
+	top: -140px;
+	left: 0;
+	z-index: 2;
+	border: 148px solid transparent;
+	border-left: 254px solid #000;
+	border-right: 254px solid #000;
+}
+.cube_friend__overlay_bot {
+	position: absolute;
+	bottom: -140px;
+	left: 0;
+	z-index: 2;
+	border: 148px solid transparent;
+	border-left: 254px solid #000;
+	border-right: 254px solid #000;
+}

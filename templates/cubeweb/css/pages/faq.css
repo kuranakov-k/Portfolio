@@ -1,0 +1,31 @@
+.faq-wrapper {
+	max-height: 350px;
+	overflow: scroll;
+}
+.faq {
+	padding: 0;
+	padding-top: 30px;
+	margin: 0 auto;
+	list-style: none;
+}
+.faq__item {
+	text-align: center;
+	font-family: "AffectLight", Arial, sans-serif;
+	font-size: 1.2em;
+	margin-bottom: 30px;
+}
+.faq__q,
+.faq__a {
+	margin: 0;
+	line-height: 1.6;
+}
+.faq__q:before {
+	content: 'Q: ';
+	font-family: "AffectBold", Arial, sans-serif;
+	color: #ffd500;
+}
+.faq__a:before {
+	content: 'A: ';
+	font-family: "AffectBold", Arial, sans-serif;
+	color: #00deff;
+}

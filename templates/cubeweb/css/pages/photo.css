@@ -1,0 +1,13 @@
+.b-photo {
+	position: relative;
+}
+.b-photo__item {
+	height: 628px;
+}
+.content__photo {
+	position: relative;
+	margin: 0 auto;
+	width: 506px;
+	min-height: 630px;
+	overflow: hidden;
+}
